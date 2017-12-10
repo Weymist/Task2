@@ -11,10 +11,10 @@ namespace TwentyOne
         public int _cost;
         public string _content;
 
-        public Card(int cost, string content)
+        public Card(int cost, string content) //конструктор карты
         {
-            _content = content;
-            _cost = cost;
+            _content = content; //поле обозначения  
+            _cost = cost; //поле стоимости 
         }
     }
 }

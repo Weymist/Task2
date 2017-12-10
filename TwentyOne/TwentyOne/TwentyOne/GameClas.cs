@@ -8,12 +8,12 @@ namespace TwentyOne
 {
     class GameClas
     {
-        const int playersCount = 3;
-        int playerFinish = 0;
-        Player winPlayer;
-        string hands = "";
-        Croupier croupier = new Croupier();
-        Player[] players = new Player[playersCount];
+        const int playersCount = 3;  //кол-во игроков
+        int playerFinish = 0; //кол-во закончивших игроков
+        Player winPlayer; //выигравший игрок
+        string hands = ""; //финальные руки игроков, которые не перебрали
+        Croupier croupier = new Croupier(); //создание крупье
+        Player[] players = new Player[playersCount]; //массив игроков
 
         public GameClas()
         {
@@ -24,8 +24,8 @@ namespace TwentyOne
         {
             for (int i = 0; i < playersCount; i++)
             {
-                players[i] = new Player(croupier, i + 1);
-                players[i].StopEvent += PlayerStop;
+                players[i] = new Player(croupier, i + 1); //создание игроков
+                players[i].StopEvent += PlayerStop; //подписка на события
                 players[i].Lose += PlayerLose;
                 players[i].FinishEvent += PlayerFinish;
             }

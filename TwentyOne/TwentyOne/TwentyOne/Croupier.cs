@@ -9,21 +9,16 @@ namespace TwentyOne
     class Croupier
     {
         int cardsCount;
-        Dictionary<int, string> deck = new Dictionary<int, string>
+        Dictionary<int, string> deck = new Dictionary<int, string> //список(словарь) карт в колоде
         {
             {3, "J"}, {4, "Q" }, {5, "K" }, {6,"6" }, {7,"7" }, { 8,"8"}, {9,"9" }, {10,"10" }, {11,"A" }
         };
-        Card[] deckArr;
+        Card[] deckArr; //колода
 
         public Croupier()
         {
-            deckArr = Help.Shuffle(deck);
-            cardsCount = 36;
-        }
-
-        void Shuffle()
-        {
-
+            deckArr = Help.Shuffle(deck); //тасование карт
+            cardsCount = 36; 
         }
 
         public void GiveCard(Player player)

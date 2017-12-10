@@ -13,7 +13,7 @@ namespace TwentyOne
             19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 };
         static Random rnd = new Random();
 
-        public static Card[] Shuffle(Dictionary<int, string> deck)
+        public static Card[] Shuffle(Dictionary<int, string> deck) //замешивание карт в случайные места
         {
             Card[] arr = new Card[36];
             for (int i = 0, n = 3; i < 36; n++)
