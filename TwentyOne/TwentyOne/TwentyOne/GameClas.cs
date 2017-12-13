@@ -26,56 +26,56 @@ namespace TwentyOne
             {
                 players[i] = new Player(croupier, i + 1); //создание игроков
                 players[i].StopEvent += PlayerStop; //подписка на события
-                players[i].Lose += PlayerLose;
-                players[i].FinishEvent += PlayerFinish;
+                players[i].Lose += PlayerLose; //подписка на события
+                players[i].FinishEvent += PlayerFinish; //подписка на события
             }
 
             Console.ReadKey();
         }
 
-        void PlayerStop(Player player)
+        void PlayerStop(Player player) //метод, выполняющийся, если у игрока <21 и он не будет брать карту 
         {
-            playerFinish++;
-            if (winPlayer == null)
+            playerFinish++; //увел. счетчика закончивших игроков
+            if (winPlayer == null) //определение победителя на момент этого события
             {
-                winPlayer = player;
+                winPlayer = player; 
             }
             else
             {
                 winPlayer = (winPlayer.Score > player.Score) ? winPlayer : player;
             }
-            Console.WriteLine("Игрок {0} составил руку", player.Name);
-            hands += player.ShowHand() + "\n";
-            FinishGame();
-            player.StopThread();
+            Console.WriteLine("Игрок {0} составил руку", player.Name); 
+            hands += player.ShowHand() + "\n"; //вывод руки игрока на экран
+            FinishGame(); //проверка, все ли игроки закончили
+            player.StopThread(); //остановка потока
         }
 
-        void PlayerLose(Player player)
+        void PlayerLose(Player player) //метод, выполняющийся, если игрок набрал >21 
         {
-            playerFinish++;
+            playerFinish++; //увел. счетчика закончивших игроков
             Console.WriteLine("Игрок {0}: <<Перебор!>>", player.Name);
-            player.PrintHand();
-            FinishGame();
-            player.StopThread();
+            player.PrintHand();  //вывод руки игрока на экран
+            FinishGame(); //проверка, все ли игроки закончили
+            player.StopThread(); //остановка потока
         }
 
-        void PlayerFinish(Player player)
+        void PlayerFinish(Player player) //метод, выполняющийся, если игрок набрал ровно 21
         {
-            player.PrintHand();
+            player.PrintHand(); //вывод руки игрока на экран
             Console.WriteLine("Игрок {0} набрал 21", player.Name);
             foreach (Player man in players)
             {
-                man.StopThread();
+                man.StopThread(); //остановка всех потоков
             }
         }
 
-        void FinishGame()
+        void FinishGame() //метод, выполняющийся, когда все игроки завершили набор карт
         {
             if (playerFinish == playersCount)
             {
                 Console.WriteLine("Имя выигравшего игрока: " +
-                    (winPlayer != null ? winPlayer.Name.ToString() : "все слились"));
-                Console.WriteLine(hands);
+                    (winPlayer != null ? winPlayer.Name.ToString() : "все слились")); //выводится имя победителя, либо "все слились" если у всех >21 
+                Console.WriteLine(hands); //вывод на экран рук всех закончивших игроков
             }
         }
     }

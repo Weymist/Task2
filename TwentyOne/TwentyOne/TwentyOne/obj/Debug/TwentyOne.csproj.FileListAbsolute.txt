@@ -16,3 +16,6 @@ C:\Laksha\ООП\TwentyOne\TwentyOne\TwentyOne\obj\Debug\TwentyOne.pdb
 C:\Laksha\ООП\TwentyOne\TwentyOne\TwentyOne\bin\Debug\TwentyOne.exe
 C:\Laksha\ООП\TwentyOne\TwentyOne\TwentyOne\bin\Debug\TwentyOne.pdb
 C:\Laksha\ООП\TwentyOne\TwentyOne\TwentyOne\obj\Debug\TwentyOne.csprojResolveAssemblyReference.cache
+C:\Laksha\1\oop2att-master (2)\oop2att-master\TwentyOne\TwentyOne\TwentyOne\bin\Debug\TwentyOne.exe.config
+C:\Laksha\1\oop2att-master (2)\oop2att-master\TwentyOne\TwentyOne\TwentyOne\obj\Debug\TwentyOne.exe
+C:\Laksha\1\oop2att-master (2)\oop2att-master\TwentyOne\TwentyOne\TwentyOne\obj\Debug\TwentyOne.pdb

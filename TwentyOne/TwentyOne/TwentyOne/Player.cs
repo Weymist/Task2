@@ -11,7 +11,7 @@ namespace TwentyOne
         int _score; //счет
         List<Card> _hand; //рука
         int _name; //имя игрока
-        int takeOrNot = new Random().Next(1, new Random().Next(1, 666)); //случ. число для определения брать или не брать карту
+        int takeOrNot = new Random().Next(1, new Random().Next(1, 666)); //случ. число (исп. для определения брать или не брать карту)     
         Thread gameProcess; //поток 
         Croupier _croupier; //крупье
 
@@ -20,10 +20,10 @@ namespace TwentyOne
             _croupier = croupier;
             Score = 0;
             _name = name;
-            Hand = new List<Card>();
-            gameProcess = new Thread(Game);
-            gameProcess.Name = name.ToString();
-            gameProcess.Start();
+            Hand = new List<Card>(); //создание списка карт в руке
+            gameProcess = new Thread(Game); //создание потока
+            gameProcess.Name = name.ToString(); //задание названия потока
+            gameProcess.Start(); //запуск потока
         }
 
         public int Score //свойство счет
@@ -40,14 +40,14 @@ namespace TwentyOne
 
         public int Name  //свойство имя
         {
-            get
+            get //возвращение значения
             { return _name; }
         }
 
         List<Card> Hand //список карт в руке
         {
-            get { return _hand; } 
-            set { _hand = value; }
+            get { return _hand; } //возвращение значения
+            set { _hand = value; } //присваивание значения
         }
 
         public delegate void Finish(Player player);  //создание делегата 
@@ -57,21 +57,21 @@ namespace TwentyOne
             FinishEvent(this);
         }
 
-        public delegate void Stop(Player player);
-        public event Stop StopEvent;
-        public void StopEventSend(object sender, EventArgs e)
+        public delegate void Stop(Player player); //создание делегата
+        public event Stop StopEvent; //создание события связанного с делегатом
+        public void StopEventSend(object sender, EventArgs e) //метод вызова события
         {
             StopEvent(this);
         }
 
-        public delegate void Over(Player player);
-        public event Over Lose;
-        public void LoseEventSend(object sender, EventArgs e)
+        public delegate void Over(Player player); //создание делегата
+        public event Over Lose;//создание события связанного с делегатом
+        public void LoseEventSend(object sender, EventArgs e) //метод вызова события
         {
             Lose(this);
         }
 
-        public void Game()
+        public void Game() //метод, определяющий, будет ли игрок брать карту (в зависимости от кол-ва очков)
         {
             if (Score == 21)
             {
@@ -120,13 +120,13 @@ namespace TwentyOne
             Game(); //проверка на продолжение(конец) игры
         }
 
-        void AskCard(int threadSleepTime)
+        void AskCard(int threadSleepTime) //метод, выполняющийся при запросе карты игроком
         {
             Thread.Sleep(threadSleepTime); //приостановка потока
             Console.WriteLine("{0} игрок берёт карту", gameProcess.Name); 
             lock (_croupier) //закрытие крупье для других потоков на время выдачи карты
             {
-                _croupier.GiveCard(this);
+                _croupier.GiveCard(this); //выдача карты игроку
             }
         }
 
@@ -144,7 +144,7 @@ namespace TwentyOne
             Console.WriteLine();
         }
 
-        public string ShowHand() //вывод руки когда закончил игру
+        public string ShowHand() //вывод руки в консоль когда закончил игру
         {
             string hand = "";
             foreach (Card card in Hand)

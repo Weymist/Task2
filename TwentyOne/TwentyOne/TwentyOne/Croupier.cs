@@ -8,8 +8,8 @@ namespace TwentyOne
 {
     class Croupier
     {
-        int cardsCount;
-        Dictionary<int, string> deck = new Dictionary<int, string> //список(словарь) карт в колоде
+        int cardsCount; //счетчик оставшихся в колоде карт
+        Dictionary<int, string> deck = new Dictionary<int, string> //список всех возможных типов и стоимости карт в колоде 
         {
             {3, "J"}, {4, "Q" }, {5, "K" }, {6,"6" }, {7,"7" }, { 8,"8"}, {9,"9" }, {10,"10" }, {11,"A" }
         };
@@ -18,12 +18,12 @@ namespace TwentyOne
         public Croupier()
         {
             deckArr = Help.Shuffle(deck); //тасование карт
-            cardsCount = 36; 
+            cardsCount = 36; //начальное кол-во карт в колоде
         }
 
-        public void GiveCard(Player player)
+        public void GiveCard(Player player) //метод выдачи карты игроку
         {
-            cardsCount--;
+            cardsCount--; 
             player.TakeCard(deckArr[cardsCount]);
         }
     }
